@@ -1,82 +1,157 @@
 
-# Canvas Starter - Beginner Step-by-Step Guide
+```markdown
+# Canvas Project - Full Stack Starter
 
-This archive contains a **frontend** (React + TypeScript + Konva + React Flow) and a tiny **backend** (Node.js + Express) for testing API integration.
-
-## What you'll find
-- `package.json` (frontend)
-- `src/` - frontend source code
-- `backend/` - small sample Express server with `/shapes` endpoints
-- `README.md` (this file)
+This project includes a **frontend** (React + TypeScript + Konva + React Flow) and a **backend** (Node.js + Express) to create a canvas editor and flow editor with persistent storage support.
 
 ---
 
-## Step-by-step: Getting started (zero knowledge)
+## Project Structure
 
-### 1) Download & extract ZIP
-Download the zip and extract to a folder, e.g. `canvas-starter-full`.
+```
 
-### 2) Install Node.js (required)
-- Go to https://nodejs.org and install the **LTS** version (recommended: 18.x or 20.x).
-- After install, open terminal / Command Prompt and run:
-  ```bash
-  node -v
-  npm -v
-  ```
-  You should see versions printed.
+canvas-project/
+├─ frontend/
+│   ├─ src/
+│   │   └─ components/
+│   ├─ package.json
+│   └─ vite.config.ts
+├─ backend/
+│   ├─ server.js
+│   └─ package.json
+├─ .gitignore
+└─ README.md
 
-### 3) Start the backend (optional but recommended for full integration)
-Open a terminal, navigate to the backend folder and start the server:
+````
+
+---
+
+## Getting Started (Step-by-Step)
+
+### 1️⃣ Download & Extract
+Download the project zip and extract to a folder, e.g., `canvas-project`.
+
+---
+
+### 2️⃣ Install Node.js
+- Install Node.js LTS from [https://nodejs.org](https://nodejs.org).  
+- Verify installation:
+
 ```bash
-cd canvas-starter-full/backend
+node -v
+npm -v
+````
+
+---
+
+### 3️⃣ Start Backend (Optional)
+
+Open a terminal:
+
+```bash
+cd canvas-project/backend
 npm install
 npm start
 ```
-This runs a server on `http://localhost:4000` with endpoints `GET /shapes` and `POST /shapes`.
 
-### 4) Start the frontend
-Open another terminal and run:
+* Runs on `http://localhost:4000`
+* Endpoints:
+
+  * `GET /shapes` → fetch shapes
+  * `POST /shapes` → save shapes
+
+---
+
+### 4️⃣ Start Frontend
+
+Open another terminal:
+
 ```bash
-cd canvas-starter-full
+cd canvas-project/frontend
 npm install
 npm run dev
 ```
-Vite will start the dev server (default `http://localhost:5173`). Open that URL in your browser.
 
-### 5) Connect frontend to backend (optional)
-Create a file `.env` at the project root with:
+* Dev server: `http://localhost:5173`
+* Frontend works with mock API or real backend.
+
+---
+
+### 5️⃣ Connect Frontend to Backend
+
+* Create `.env` in `frontend/`:
+
 ```
 VITE_API_BASE=http://localhost:4000
 ```
-Restart the dev server if running. Now the Load/Save buttons will call your local backend.
 
-### 6) Run tests
-From the project root:
+* Restart frontend server.
+* Load/Save buttons now use backend.
+
+---
+
+### 6️⃣ Run Tests
+
 ```bash
 npm test
 ```
-This runs the included Vitest tests.
 
-### 7) Build for production (optional)
+* Runs Vitest for frontend.
+
+---
+
+### 7️⃣ Build for Production
+
 ```bash
 npm run build
 npm run preview
 ```
-This generates a production build and runs a local preview server.
+
+* Creates production build and local preview server.
 
 ---
 
-## If something breaks (common fixes)
-- **Dependency install fails**: delete `node_modules` and `package-lock.json`, then `npm install` again.
-- **Port is in use**: change port in `vite.config.ts` or run `npm run dev -- --port 5174`.
-- **CORS errors**: ensure the backend uses CORS (the sample backend includes it).
-- **Node version issues**: install Node LTS (recommended) or use nvm to manage versions.
+## Deployment
+
+### Frontend (Vercel)
+
+* Import GitHub repo → select `frontend/` folder
+* Build & deploy
+* Set environment variable `VITE_API_BASE` → backend URL
+
+### Backend (Render)
+
+* Import GitHub repo → Root Directory = `backend`
+* Build: `npm install`
+* Start: `npm start`
+* Render provides live URL → update `VITE_API_BASE` in frontend
 
 ---
 
-## Learn by editing
-- `src/components/CanvasEditor.tsx` → canvas behavior, shapes, toolbar.
-- `src/components/FlowEditor.tsx` → node/graph behavior.
-- `src/lib/api.ts` → learn how frontend calls an API.
+## Troubleshooting
 
-If you'd like, I can guide you live through each terminal command step-by-step or create a screencast. Tell me which OS you use (Windows / macOS / Linux) and I’ll give exact commands for your environment.
+* **npm install fails** → delete `node_modules` & `package-lock.json` → `npm install`
+* **Port in use** → change port in `vite.config.ts` or `server.js`
+* **CORS errors** → backend includes CORS middleware
+* **Node version issues** → use LTS version or `nvm`
+
+---
+
+## Learn by Editing
+
+* `frontend/src/components/CanvasEditor.tsx` → Canvas behavior
+* `frontend/src/components/FlowEditor.tsx` → Flow editor
+* `frontend/src/lib/api.ts` → API calls
+* `backend/server.js` → API endpoints and storage logic
+
+---
+
+## Tips
+
+* Select shape → press **Delete** to remove
+* Scroll → zoom canvas
+* Drag → move canvas or shapes
+* Shapes persist in backend (if deployed) or localStorage (mock API)
+
+---
+
